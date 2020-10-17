@@ -32,4 +32,21 @@ app.post("/findSchools", (req, res) => {
   res.send(distance);
 });
 
+// creates a new student account in the database
+app.post("/createAccount", async (req, res) => {
+  const { email, uid } = req.body;
+
+  const studentData = {
+    ["Email"]: email,
+    ["UID"]: uid,
+  };
+
+  // await firestore
+  //   .collection("students")
+  //   .doc(user.uid)
+  //   .set(studentData)
+  //   .catch((err) => res.status(400).send(err));
+  res.status(201).send();
+});
+
 exports.api = functions.https.onRequest(app);
