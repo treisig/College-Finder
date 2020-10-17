@@ -10,17 +10,6 @@ function Signup(props) {
       <div className="signupDiv">
         <Form>
             <Form.Row>
-                <Form.Group as={Col} controlId="formGridFirstName">
-                    <Form.Label>First Name: </Form.Label>
-                    <Form.Control type="first name" />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridLastName">
-                    <Form.Label>Last Name: </Form.Label>
-                    <Form.Control type="last name" />
-                </Form.Group>
-            </Form.Row>
-            <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Email: </Form.Label>
                     <Form.Control type="email" />
