@@ -24,7 +24,7 @@ function Login(props) {
       </Button>
     </Form>
    
-  </div>;
+  </div>
   </div>
 }
 
