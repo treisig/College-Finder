@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 
 function SchoolView(props) {
-  useEffect(() => (async function () {})(), []);
+  // useEffect(() => (async function () {})(), []);
   return (
     <div className="schoolViewDiv">
-      <div></div>
+      <div>YOOOoOOOOO</div>
     </div>
   );
 }

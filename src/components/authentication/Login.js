@@ -1,31 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./Login.css";
+import { Redirect } from "react-router-dom";
+import Firebase from "../../Firebase/Firebase.js";
 
 function Login(props) {
-  return <div>
-    <div className="header">
-      header
-    </div>
-    <div className="loginDiv">
-    
-    <Form>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Email Address: </Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-      </Form.Group>
+  const [location, setLocation] = useState(null);
+  // sends login info to firebase for verification
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    console.log(email.value + " " + password.value);
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password: </Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-      Submit
-      </Button>
-    </Form>
-   
-  </div>;
-  </div>
+    await Firebase.auth
+      .signInWithEmailAndPassword(email.value, password.value)
+      .catch((err) => {
+        alert("Your email or password is incorrect");
+      });
+
+    // makes sure that you are a valid user before going to next page
+    if (Firebase.auth.currentUser != null) {
+      setLocation(<Redirect to="/schoolfinder" />);
+    }
+  };
+
+  return (
+    <div>
+      <div className="header">header</div>
+      <div className="loginDiv">
+        <Form onSubmit={handleLogin}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email Address: </Form.Label>
+            <Form.Control name="email" type="email" placeholder="Enter email" />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password: </Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
+      {location}
+    </div>
+  );
 }
 
 export default Login;
