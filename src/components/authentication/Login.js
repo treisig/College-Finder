@@ -23,7 +23,6 @@ function Login(props) {
       setLocation(<Redirect to="/schoolfinder" />);
     }
   };
-
   return (
     <div>
       <div className="header">header</div>
