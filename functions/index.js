@@ -34,18 +34,41 @@ app.post("/findSchools", (req, res) => {
 
 // creates a new student account in the database
 app.post("/createAccount", async (req, res) => {
-  const { email, uid } = req.body;
+  const {
+    uid,
+    fname,
+    lname,
+    address,
+    address2,
+    city,
+    state,
+    zip,
+    weightedGPA,
+    unweightedGPA,
+    SAT,
+    ACT,
+  } = req.body;
 
   const studentData = {
-    ["Email"]: email,
     ["UID"]: uid,
+    ["First Name"]: fname,
+    ["Last Name"]: lname,
+    ["Address"]: address,
+    ["Address 2"]: address2,
+    ["City"]: city,
+    ["State"]: state,
+    ["Zip"]: zip,
+    ["Weighted GPA"]: weightedGPA,
+    ["Unweighted GPA"]: unweightedGPA,
+    ["SAT"]: SAT,
+    ["ACT"]: ACT,
   };
 
-  // await firestore
-  //   .collection("students")
-  //   .doc(user.uid)
-  //   .set(studentData)
-  //   .catch((err) => res.status(400).send(err));
+  await firestore
+    .collection("users")
+    .doc(uid)
+    .set(studentData)
+    .catch((err) => res.status(400).send(err));
   res.status(201).send();
 });
 
