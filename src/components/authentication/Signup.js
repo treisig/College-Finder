@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button, Col } from "react-bootstrap";
 import "./Signup.css";
 import Firebase from "../../Firebase/Firebase.js";
+import { Redirect } from "react-router-dom";
+
 import axios from "axios";
 
 function Signup(props) {
-  const handleSignup = (event) => {
+  const [location, setLocation] = useState(null);
+
+  const handleSignup = async (event) => {
     event.preventDefault();
     const { email, password, confirm } = event.target.elements;
     if (password.value !== confirm.value) {
       alert("Please make sure your passwords match");
       return;
     }
-    Firebase.auth
+    await Firebase.auth
       .createUserWithEmailAndPassword(email.value, password.value)
       .catch((err) => {
         console.log("Something went wrong, please try again.");
       });
 
-    // axios.post("/createAccount", {
-    //   uid: Firebase.auth.c,
-    // });
+    // await axios
+    //   .post(
+    //     "http://localhost:5001/college-finder-b2385/us-central1/api/createAccount",
+    //     {
+    //       email: email.value,
+    //     }
+    //   )
+    //   .catch((err) => console.log(err));
+
+    await Firebase.auth
+      .signInWithEmailAndPassword(email.value, password.value)
+      .catch((err) => {
+        alert("Your email or password is incorrect");
+      });
+
+    if (Firebase.auth.currentUser != null) {
+      setLocation(<Redirect to="/schoolfinder" />);
+    }
   };
 
   return (
@@ -49,6 +68,7 @@ function Signup(props) {
           </Button>
         </Form>
       </div>
+      {location}
     </div>
   );
 }
