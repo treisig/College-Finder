@@ -5,6 +5,12 @@ import "./Profile.css";
 function Profile(props) {
     return <div>
         <div className="header">
+            <div class="header-img"></div>
+            <h1> Spooky Spectacular School Selector</h1>
+            <p>Find out which college is <em>screaming</em> your name </p>
+        </div>
+        <div class="profile-instructions">
+            <h2>Update your account to find the best match for you: </h2>
         </div>
         <div className="profileDiv">
             <Form>
@@ -68,10 +74,11 @@ function Profile(props) {
                         <Form.Control />
                     </Form.Group>
                 </Form.Row>
-
-                <Button variant="primary" type="submit">
-                    Save Changes
-                </Button>
+                <div className="button">
+                    <Button variant="primary" type="submit" id="button1">
+                        Save Changes
+                    </Button>
+                </div>
             </Form>
         </div>
     </div>
