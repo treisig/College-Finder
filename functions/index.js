@@ -51,6 +51,7 @@ app.post("/findSchools", (req, res) => {
     return acc.filter((school) => val >= parseInt(school[type]));
   }, schoolsArr);
 
+  console.log(filteredSchools);
   // const filteredSchools = schoolsArr.filter(
   //   (school) =>
   //     parseInt(act) >= school["act 25th"] && parseInt(act) >= school["act 25th"]
