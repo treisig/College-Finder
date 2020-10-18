@@ -1,0 +1,10 @@
+.tableDiv {
+  width: 80 vw;
+  margin-left: 8%;
+}
+
+.schoolViewDiv {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}

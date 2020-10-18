@@ -3,7 +3,6 @@ import { Form, Button, Col } from "react-bootstrap";
 import "./Signup.css";
 import Firebase from "../../Firebase/Firebase.js";
 import { Redirect } from "react-router-dom";
-
 import axios from "axios";
 
 function Signup(props) {
