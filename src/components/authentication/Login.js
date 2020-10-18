@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./Login.css";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Firebase from "../../Firebase/Firebase.js";
 
 function Login(props) {
@@ -55,8 +55,17 @@ function Login(props) {
               Submit
             </Button>
           </div>
+          <div>
+            <Link
+              to="/signup"
+              style={{ marginBottom: "15px", fontSize: "14px" }}
+            >
+              Don't have an account? Sign up here!
+            </Link>
+          </div>
         </Form>
       </div>
+
       {location}
     </div>
   );
