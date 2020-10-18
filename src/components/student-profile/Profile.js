@@ -5,6 +5,7 @@ import axios from "axios";
 import Firebase from "../../Firebase/Firebase";
 
 function Profile(props) {
+
   // sends changes to Firebase
   const handleEditInfo = async (event) => {
     event.preventDefault();
@@ -43,7 +44,14 @@ function Profile(props) {
 
   return (
     <div>
-      <div className="header"></div>
+      <div className="header">
+            <div class="header-img"></div>
+            <h1> Spooky Spectacular School Selector</h1>
+            <p>Find out which college is <em>screaming</em> your name </p>
+        </div>
+        <div className="profile-instructions">
+            <h2>Update your account to find the best match for you: </h2>
+        </div>
       <div className="profileDiv">
         <Form onSubmit={handleEditInfo}>
           <Form.Row>
@@ -96,7 +104,6 @@ function Profile(props) {
               <Form.Label>Weighted GPA </Form.Label>
               <Form.Control name="weightedGPA" />
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridUnweighted GPA">
               <Form.Label>Unweighted GPA </Form.Label>
               <Form.Control name="unweightedGPA" />
@@ -112,10 +119,11 @@ function Profile(props) {
               <Form.Control name="ACT" />
             </Form.Group>
           </Form.Row>
-
-          <Button variant="primary" type="submit">
-            Save Changes
-          </Button>
+           <div className="button">
+                    <Button variant="primary" type="submit" id="button1">
+                        Save Changes
+                    </Button>
+             </div>
         </Form>
       </div>
     </div>

@@ -4,7 +4,7 @@ import "./Signup.css";
 import Firebase from "../../Firebase/Firebase.js";
 import { Redirect } from "react-router-dom";
 
-import axios from "axios";
+// import axios from "axios";
 
 function Signup(props) {
   const [location, setLocation] = useState(null);
@@ -44,7 +44,16 @@ function Signup(props) {
 
   return (
     <div>
-      <div className="header"></div>
+      <div className="header">
+        <div class="header-img"></div>
+        <h1> 
+          Spooky Spectacular School Selector
+        </h1>
+        <p>Find out which college is <em>screaming</em> your name </p>
+      </div>
+      <div class="signup-instructions">
+        <h2>Enter your information to <br></br>create an account: </h2>
+      </div>
       <div className="signupDiv">
         <Form onSubmit={handleSignup}>
           <Form.Row>
@@ -62,10 +71,11 @@ function Signup(props) {
               <Form.Control name="confirm" type="password" />
             </Form.Group>
           </Form.Row>
-
-          <Button variant="primary" type="submit">
+        <div className="button">
+          <Button variant="primary" type="submit" id="button1">
             Submit
           </Button>
+        </div>
         </Form>
       </div>
       {location}
