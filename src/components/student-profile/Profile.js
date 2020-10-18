@@ -5,7 +5,6 @@ import axios from "axios";
 import Firebase from "../../Firebase/Firebase";
 
 function Profile(props) {
-
   // sends changes to Firebase
   const handleEditInfo = async (event) => {
     event.preventDefault();
@@ -24,7 +23,7 @@ function Profile(props) {
     } = event.target.elements;
 
     await axios.post(
-      "http://localhost:5001/college-finder-b2385/us-central1/api/createAccount",
+      "https://us-central1-college-finder-b2385.cloudfunctions.net/api/createAccount",
       {
         uid: Firebase.auth.currentUser.uid,
         fname: fname.value,
@@ -47,13 +46,15 @@ function Profile(props) {
   return (
     <div>
       <div className="header">
-            <div class="header-img"></div>
-            <h1> Spooky Spectacular School Selector</h1>
-            <p>Find out which college is <em>screaming</em> your name </p>
-        </div>
-        <div className="profile-instructions">
-            <h2>Update your account to find the best match for you: </h2>
-        </div>
+        <div class="header-img"></div>
+        <h1> Spooky Spectacular School Selector</h1>
+        <p>
+          Find out which college is <em>screaming</em> your name{" "}
+        </p>
+      </div>
+      <div className="profile-instructions">
+        <h3>Update your account to find the best match for you: </h3>
+      </div>
       <div className="profileDiv">
         <Form onSubmit={handleEditInfo}>
           <Form.Row>
@@ -121,11 +122,11 @@ function Profile(props) {
               <Form.Control name="ACT" />
             </Form.Group>
           </Form.Row>
-           <div className="button">
-                    <Button variant="primary" type="submit" id="button1">
-                        Save Changes
-                    </Button>
-             </div>
+          <div className="button">
+            <Button variant="primary" type="submit" id="button1">
+              Save Changes
+            </Button>
+          </div>
         </Form>
       </div>
     </div>

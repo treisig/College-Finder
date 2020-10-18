@@ -12,11 +12,11 @@ function SchoolView(props) {
   const [schoolList, setSchools] = useState(null);
   const [filters, setFilters] = useState([]);
   const [profileView, setView] = useState(false);
+  // const [distance, setDistance] = useState("");
 
   const sendFilters = async () => {
-    console.log(filters);
     const data = await axios.post(
-      "http://localhost:5001/college-finder-b2385/us-central1/api/findSchools",
+      "https://us-central1-college-finder-b2385.cloudfunctions.net/api/findSchools",
       {
         act: student["ACT"],
         sat: student["SAT"],
@@ -24,9 +24,49 @@ function SchoolView(props) {
         filters: filters,
       }
     );
-    console.log(data.data);
+    // // will filter out by distance
+    // if (distance !== "") {
+    //   const userCity = student["City"];
+    //   const userState = student["State"];
+    //   const userData = await axios.get(
+    //     `https://us1.locationiq.com/v1/search.php?key=${key}&city=${userCity}&state=${userState}&format=json`
+    //   );
+    //   const userLat = userData.lat;
+    //   const userLon = userData.lon;
+    //   let tempList = data.data.filter(
+    //     (schoolOBJ) =>
+    //       schoolOBJ.name !== "University of North Carolina at Chapel Hill"
+    //   );
+
+    //   tempList = tempList.filter((schoolOBJ) => {
+    //     const myDistance = calculateDistance(
+    //       userLat,
+    //       userLon,
+    //       schoolOBJ["lat"],
+    //       schoolOBJ["lon"]
+    //     );
+    //     return myDistance <= distance;
+    //   });
+    //   console.log(tempList);
+    //   setSchools(tempList);
+    //   return;
+    // }
+
     setSchools(data.data);
   };
+
+  // // FROM https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+  // // calculates distance
+  // function calculateDistance(lat1, lon1, lat2, lon2) {
+  //   const p = 0.017453292519943295; // Math.PI / 180
+  //   const c = Math.cos;
+  //   const a =
+  //     0.5 -
+  //     c((lat2 - lat1) * p) / 2 +
+  //     (c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p))) / 2;
+
+  //   return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+  // }
 
   const updateView = () => {
     setView(!profileView);
@@ -36,10 +76,10 @@ function SchoolView(props) {
     () =>
       (async function () {
         const data = await axios.get(
-          `http://localhost:5001/college-finder-b2385/us-central1/api/studentInfo/${Firebase.auth.currentUser.uid}`
+          `https://us-central1-college-finder-b2385.cloudfunctions.net/api/studentInfo/${Firebase.auth.currentUser.uid}`
         );
         const schools = await axios.get(
-          "http://localhost:5001/college-finder-b2385/us-central1/api/schools"
+          "https://us-central1-college-finder-b2385.cloudfunctions.net/api/schools"
         );
         setStudent(data.data);
         setSchools(schools.data);
@@ -48,7 +88,6 @@ function SchoolView(props) {
     []
   );
   const addFilters = (event) => {
-    console.log(filters);
     // adds the check to the list
     if (event.target.checked) {
       const tempList = filters;
@@ -71,26 +110,38 @@ function SchoolView(props) {
     />
   ));
 
-  // if (!student) return null;
-
   if (profileView) return <Profile updateView={updateView} />;
 
   return (
     schoolList && (
-      <div>
-        <div>header</div>
+      <div className="studentWrapper">
+        <div className="header">
+          <div class="header-img"></div>
+          <h1> Spooky Spectacular School Selector</h1>
+          <p>
+            Find out which college is <em>screaming</em> your name{" "}
+          </p>
+        </div>
         <div className="schoolViewDiv">
           <div className="filtersDiv">
+            <h4>Filters</h4>
             <Form>
-              <Form.Group controlId="ControlSelect checkBoxes">
-                <div className="mb-3 checkBoxes">{filterBoxes}</div>
+              <Form.Group
+                className="checkboxGroup"
+                controlId="ControlSelect checkBoxes"
+              >
+                <div className="checkBoxes">{filterBoxes}</div>
               </Form.Group>
-              <Button variant="primary" onClick={sendFilters}>
+              <Button
+                variant="primary"
+                className="filterBtn"
+                onClick={sendFilters}
+              >
                 Submit Filters
               </Button>
             </Form>
-            <Link onClick={() => updateView()}>
-              Update your information here!
+            <Link onClick={() => updateView()} style={{ color: "black" }}>
+              Click me to update your information!
             </Link>
           </div>
           <div className="tableDiv">

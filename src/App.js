@@ -11,8 +11,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      {/* <Router>
-        <nav>
+      <Router>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/"> Login</Link>
@@ -22,15 +22,14 @@ function App() {
               <Link to="/schoolfinder">SchoolView</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/schoolfinder" component={SchoolView} />
           <Route exact path="/editprofile" component={Profile} />
         </Switch>
-      </Router> */}
-      <Profile />
+      </Router>
     </div>
   );
 }

@@ -2,11 +2,11 @@
   color: black;
   font-size: x-large;
   background-color: peachpuff;
-  height: 100vh;
+  height: calc(100vh - 100px);
   width: 100vw;
   justify-content: center;
-  align-items: center;
   display: flex;
+  align-items: start;
   text-align: center;
   overflow-y: hidden;
 }
