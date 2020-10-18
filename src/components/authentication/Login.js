@@ -10,7 +10,6 @@ function Login(props) {
   const handleLogin = async (event) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
-    console.log(email.value + " " + password.value);
 
     await Firebase.auth
       .signInWithEmailAndPassword(email.value, password.value)

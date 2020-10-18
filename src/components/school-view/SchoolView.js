@@ -68,7 +68,13 @@ function SchoolView(props) {
   //   return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
   // }
 
-  const updateView = () => {
+  const updateView = async () => {
+    if (profileView) {
+      const data = await axios.get(
+        `https://us-central1-college-finder-b2385.cloudfunctions.net/api/studentInfo/${Firebase.auth.currentUser.uid}`
+      );
+      setStudent(data.data);
+    }
     setView(!profileView);
   };
   // on mount get initial info
