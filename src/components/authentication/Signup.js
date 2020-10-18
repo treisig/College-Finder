@@ -4,7 +4,6 @@ import "./Signup.css";
 import Firebase from "../../Firebase/Firebase.js";
 import { Redirect } from "react-router-dom";
 
-// import axios from "axios";
 
 function Signup(props) {
   const [location, setLocation] = useState(null);
@@ -21,15 +20,6 @@ function Signup(props) {
       .catch((err) => {
         console.log("Something went wrong, please try again.");
       });
-
-    // await axios
-    //   .post(
-    //     "http://localhost:5001/college-finder-b2385/us-central1/api/createAccount",
-    //     {
-    //       email: email.value,
-    //     }
-    //   )
-    //   .catch((err) => console.log(err));
 
     await Firebase.auth
       .signInWithEmailAndPassword(email.value, password.value)

@@ -40,6 +40,8 @@ function Profile(props) {
         ACT: ACT.value,
       }
     );
+
+    props.updateView();
   };
 
   return (
