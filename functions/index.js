@@ -23,6 +23,17 @@ app.get("/", (req, res) => {
   res.send("Yoooooo what up users!");
 });
 
+app.get("/studentInfo/:uid", async (req, res) => {
+  const data = await firestore.collection("users").doc(req.params.uid).get();
+  res.send(data.data());
+});
+
+app.get("/schools", async (req, res) => {
+  const data = await firestore.collection("schools").get();
+  const docs = data.docs.map((doc) => doc.data);
+  res.send(docs);
+});
+
 app.post("/findSchools", (req, res) => {
   const { gpa, act, sat, location, distance } = req.body;
   // put code here for the school queries
