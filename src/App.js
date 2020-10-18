@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Router>
+      {/* <Router>
         <nav>
           <ul>
             <li>
@@ -29,7 +29,8 @@ function App() {
           <Route exact path="/schoolfinder" component={SchoolView} />
           <Route exact path="/editprofile" component={Profile} />
         </Switch>
-      </Router>
+      </Router> */}
+      <Profile />
     </div>
   );
 }

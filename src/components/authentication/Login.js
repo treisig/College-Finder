@@ -25,7 +25,16 @@ function Login(props) {
   };
   return (
     <div>
-      <div className="header">header</div>
+      <div className="header">
+        <div class="header-img"></div>
+        <h1> 
+          Spooky Spectacular School Selector
+        </h1>
+        <p>Find out which college is <em>screaming</em> your name </p>
+      </div>
+      <div class="login-instructions">
+        <h2>Enter your log in information: </h2>
+      </div>
       <div className="loginDiv">
         <Form onSubmit={handleLogin}>
           <Form.Group controlId="formBasicEmail">
@@ -41,10 +50,12 @@ function Login(props) {
               placeholder="Password"
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
+          <div className="button">
+          < Button variant="primary" type="submit" id="button1">
+             Submit
           </Button>
-        </Form>
+          </div>
+          </Form>
       </div>
       {location}
     </div>
